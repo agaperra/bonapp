@@ -4,6 +4,7 @@
     package="com.team.bonapp">
 
     <application
+        android:name=".BonAppApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
