@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- palette colors -->
+    <color name="pale_olive">#FF657A15</color>
+    <color name="dark_khaki">#FFBBC05C</color>
+    <color name="burgundy">#FFA72A24</color>
+    <color name="ivory">#FFFDFCDE</color>
+    <color name="grayish_yellow">#FFC79452</color>
 </resources>
