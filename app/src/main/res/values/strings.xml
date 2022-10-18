@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BonApp</string>
+    <string name="app_name">bonapp</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_favorite">Favorite</string>
