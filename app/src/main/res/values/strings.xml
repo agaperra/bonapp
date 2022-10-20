@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_favorite">Favorite</string>
+    <string name="kal"> cal</string>
+    <string name="min"> min</string>
+    <string name="no_like">no like</string>
+    <string name="like">like</string>
+    <string name="gr">gr</string>
+    <string name="dietLabels">Diet labels:</string>
+    <string name="healthLabels">Health labels:</string>
+    <string name="cautions">Cautions:</string>
+    <string name="ingredientLines">Ingredients:</string>
+    <string name="empty_list">Unfortunately, you haven\'t added anything to your favorites yet. Rather, go to the "Home" tab and collect your favorite recipes.</string>
 </resources>

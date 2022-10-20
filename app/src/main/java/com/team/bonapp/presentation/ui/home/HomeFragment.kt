@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.team.bonapp.databinding.FragmentHomeBinding
 import com.team.bonapp.data.db.FilterValues
-import com.team.bonapp.presentation.adapters.ViewPagerAdapter
+import com.team.bonapp.presentation.adapters.pager.ViewPagerAdapter
 import com.team.bonapp.presentation.ui.pager.PagerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi

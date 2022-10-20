@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Colors_Widget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/color_choice_chip_background_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="marginHorizontal">4dp</item>
+        <item name="android:shadowColor">@color/pale_olive</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="RoundedTabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/tab_color_selector</item>
+        <item name="tabIndicator">@null</item>
+        <item name="android:background">@drawable/tab_bg</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">@color/white</item>
+    </style>
+
+    <style name="CardBackground">
+        <item name="android:background">@color/ivory</item>
+    </style>
+
+    <style name="BoldFont">
+        <item name="fontFamily">@font/montserratbold</item>
+    </style>
+
+    <style name="LightFont">
+        <item name="fontFamily">@font/montserratlight</item>
+        <item name="android:textColor">@color/black_middle</item>
+    </style>
+
+    <style name="RegularFont">
+        <item name="fontFamily">@font/montserratregular</item>
+        <item name="android:textColor">@color/black_middle</item>
+    </style>
+
+    <style name="MediumFont">
+        <item name="fontFamily">@font/montserratmedium</item>
+        <item name="android:textColor">@color/black_darker</item>
+    </style>
+
+</resources>

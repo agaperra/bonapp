@@ -33,7 +33,7 @@ val FilterValues: LinkedHashMap<String, List<String>> = linkedMapOf(
         "South East Asian"
     ),
     "Meal type" to listOf(
-        "Breakfast", "Dinner", "Lunch", "Snack", "Teaime"
+        "Breakfast", "Dinner", "Lunch", "Snack", "Teatime"
     ),
     "Dish type" to listOf(
         "Biscuit and cookies",
@@ -59,6 +59,7 @@ val FilterValues: LinkedHashMap<String, List<String>> = linkedMapOf(
         "Desserts",
         "Drinks",
         "Salad",
+        "Main course"
     )
 //    "Category" to listOf(
 //        "generic-foods", "generic-meals", "packaged-foods", "fast-foods"
