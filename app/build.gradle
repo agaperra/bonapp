@@ -39,6 +39,15 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("app.properties").newDataInputStream())
+        def app_id = properties.getProperty("application_ID", "")
+        it.buildConfigField "String", "app_id", app_id
+        def app_key = properties.getProperty("application_keys", "")
+        it.buildConfigField "String", "app_key", app_key
+    }
 }
 
 dependencies {
