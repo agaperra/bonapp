@@ -10,9 +10,10 @@ interface EdamamApi {
 
     @GET("api/recipes/v2")
     suspend fun mainContent(
+        @Query("type", encoded = true) type: String = "public",
+        @Query("q", encoded = true) q: String,
         @Query("app_id", encoded = true) app_id: String,
         @Query("app_key", encoded = true) app_key: String,
-        @Query("q", encoded = true) q: String,
         @Query("dishType", encoded = true) dishType: String,
     ): Edamam
 

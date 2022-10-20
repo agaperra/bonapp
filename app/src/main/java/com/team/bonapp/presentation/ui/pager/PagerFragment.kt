@@ -19,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.onEach
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -56,7 +57,7 @@ class PagerFragment(private val dishType: String) : Fragment() {
         pagerViewModel.getContent(
             app_id = BuildConfig.app_id,
             app_key = BuildConfig.app_key,
-            query = dishType,
+            query = dishType.lowercase(Locale.ROOT),
             dishType = dishType
         )
 
@@ -73,7 +74,6 @@ class PagerFragment(private val dishType: String) : Fragment() {
                 binding.progressBar.isVisible = true
             }
             is AppState.Success -> {
-                Toast.makeText(requireContext(), result.data.toString(), Toast.LENGTH_SHORT).show()
                 recipeAdapter.submitList(result.data)
                 binding.progressBar.isVisible = false
             }

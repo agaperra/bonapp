@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         FilterValues.forEach { (key, value) ->
             if (key == "Dish type category") {
                 value.forEach { category ->
-                    adapter.addFragment(PagerFragment(category.lowercase(Locale.ROOT)), category.replace("-", " "))
+                    adapter.addFragment(PagerFragment(category), category)
                     viewPager.adapter = adapter
                 }
             }
