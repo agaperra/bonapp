@@ -67,11 +67,13 @@ class PagerFragment(private val dishType: String) : Fragment() {
         when (result) {
             is AppState.Error -> {
                 binding.progressBar.isVisible = false
+                Toast.makeText(requireContext(), result.data.toString(), Toast.LENGTH_SHORT).show()
             }
             is AppState.Loading -> {
                 binding.progressBar.isVisible = true
             }
             is AppState.Success -> {
+                Toast.makeText(requireContext(), result.data.toString(), Toast.LENGTH_SHORT).show()
                 recipeAdapter.submitList(result.data)
                 binding.progressBar.isVisible = false
             }
