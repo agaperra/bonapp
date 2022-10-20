@@ -35,6 +35,11 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        doInitialization()
+    }
+
+    private fun doInitialization(){
+
         binding.ibSearch.setOnClickListener {
             Toast.makeText(context, "Search button clicked!", Toast.LENGTH_SHORT).show()
         }
