@@ -46,8 +46,10 @@ class PagerFragment(private val dishType: String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), dishType, Toast.LENGTH_SHORT).show()
-        doInitialization()
+
+        if (view.isVisible) {
+            doInitialization()
+        }
     }
 
     private fun doInitialization() {
@@ -55,9 +57,6 @@ class PagerFragment(private val dishType: String) : Fragment() {
         binding.pagerRV.adapter = recipeAdapter
 
         pagerViewModel.getContent(
-            app_id = BuildConfig.app_id,
-            app_key = BuildConfig.app_key,
-            query = dishType.lowercase(Locale.ROOT),
             dishType = dishType
         )
 
@@ -68,7 +67,7 @@ class PagerFragment(private val dishType: String) : Fragment() {
         when (result) {
             is AppState.Error -> {
                 binding.progressBar.isVisible = false
-                Toast.makeText(requireContext(), result.data.toString(), Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), result.data.toString(), Toast.LENGTH_SHORT).show()
             }
             is AppState.Loading -> {
                 binding.progressBar.isVisible = true
