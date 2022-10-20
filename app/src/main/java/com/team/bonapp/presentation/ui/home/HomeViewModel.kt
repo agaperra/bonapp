@@ -11,10 +11,7 @@ import com.team.bonapp.utils.network.ConnectionState
 import com.team.bonapp.utils.network.NetworkStatusListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -32,7 +29,10 @@ class HomeViewModel @Inject constructor(
     private val _mainContentLoading = MutableStateFlow(true)
     var mainContentLoading = _mainContentLoading.asStateFlow()
 
+    private val categories = MealValues()["Dish type category"]!!
     var currentFragmentId = 0
+    lateinit var dishType: String
+
 
     init {
         networkStatusListener.networkStatus.onEach { status ->
@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
 
     fun getContent() {
         setContentLoading()
-        val dishType = MealValues()["Dish type category"]!![currentFragmentId]
+        dishType = categories[currentFragmentId]
         getMainContent(query = dishType.lowercase(), dishType = dishType).onEach { result ->
             when (result) {
                 is AppState.Success -> {

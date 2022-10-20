@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
         val adapter = ViewPagerAdapter(childFragmentManager)
 
         MealValues()["Dish type category"]?.forEach { category ->
+            val page = PagerFragment(category)
             adapter.addFragment(PagerFragment(category), category)
             viewPager.adapter = adapter
         }

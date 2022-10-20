@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class PagerFragment(private val dishType: String) : Fragment() {
+class PagerFragment(val dishType: String) : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModels()
 
@@ -44,10 +44,7 @@ class PagerFragment(private val dishType: String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (view.isVisible) {
-            doInitialization()
-        }
+        doInitialization()
     }
 
     private fun doInitialization() {
@@ -77,7 +74,10 @@ class PagerFragment(private val dishType: String) : Fragment() {
 
     private fun startObserve(contentSource: StateFlow<AppState<List<Recipe>>>) {
         contentSource.onEach { result ->
-            setResult(result)
+            if (homeViewModel.dishType == dishType)
+                setResult(result)
+            else
+                setResult(AppState.Loading())
         }.launchWhenStarted(lifecycleScope)
     }
 
