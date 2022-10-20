@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.team.bonapp.databinding.FragmentHomeBinding
-import com.team.bonapp.data.db.FilterValues
+import com.team.bonapp.data.db.MealValues
+import com.team.bonapp.domain.AppState
 import com.team.bonapp.presentation.adapters.pager.ViewPagerAdapter
-import com.team.bonapp.presentation.ui.pager.PagerFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import java.util.*
+import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
@@ -21,15 +21,13 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,14 +44,25 @@ class HomeFragment : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(childFragmentManager)
-        FilterValues.forEach { (key, value) ->
-            if (key == "Dish type category") {
-                value.forEach { category ->
-                    adapter.addFragment(PagerFragment(category), category)
-                    viewPager.adapter = adapter
+
+        MealValues()["Dish type category"]?.forEach { category ->
+            adapter.addFragment(PagerFragment(category), category)
+            viewPager.adapter = adapter
+        }
+
+        var job: Job? = null
+        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageSelected(position: Int) {
+                homeViewModel.setContentLoading()
+                job?.cancel()
+                job = MainScope().launch {
+                    delay(600)
+                    homeViewModel.currentFragmentId = position
+                    homeViewModel.getContent()
                 }
             }
-        }
+        })
+
     }
 
     override fun onDestroyView() {

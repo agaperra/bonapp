@@ -1,9 +1,7 @@
-package com.team.bonapp.presentation.ui.pager
+package com.team.bonapp.presentation.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.team.bonapp.BuildConfig
 import com.team.bonapp.data.db.MealValues
 import com.team.bonapp.domain.AppState
 import com.team.bonapp.domain.ErrorState
@@ -18,12 +16,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 @ExperimentalCoroutinesApi
-class PagerViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val getMainContent: GetMainContent,
     private val networkStatusListener: NetworkStatusListener
 ) : ViewModel() {
@@ -33,15 +30,15 @@ class PagerViewModel @Inject constructor(
     var mainContent = _mainContent.asStateFlow()
 
     private val _mainContentLoading = MutableStateFlow(true)
-    val mainContentLoading = _mainContentLoading.asStateFlow()
+    var mainContentLoading = _mainContentLoading.asStateFlow()
 
-    private val currentFragment = MealValues()["Dish type category"]!![0]
+    var currentFragmentId = 0
 
     init {
         networkStatusListener.networkStatus.onEach { status ->
             when (status) {
                 ConnectionState.Available -> {
-                    getContent(dishType = currentFragment)
+                    getContent()
                 }
                 ConnectionState.Unavailable -> {
                     if (_mainContent.value.data != null) _mainContent.value =
@@ -51,7 +48,9 @@ class PagerViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun getContent(dishType: String) {
+    fun getContent() {
+        setContentLoading()
+        val dishType = MealValues()["Dish type category"]!![currentFragmentId]
         getMainContent(query = dishType.lowercase(), dishType = dishType).onEach { result ->
             when (result) {
                 is AppState.Success -> {
@@ -69,5 +68,10 @@ class PagerViewModel @Inject constructor(
             }
 
         }.launchIn(viewModelScope)
+    }
+
+    public fun setContentLoading() {
+        _mainContent.value = AppState.Loading()
+        _mainContentLoading.value = true
     }
 }

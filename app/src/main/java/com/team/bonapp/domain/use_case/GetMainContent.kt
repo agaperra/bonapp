@@ -1,5 +1,6 @@
 package com.team.bonapp.domain.use_case
 
+import com.team.bonapp.BuildConfig
 import com.team.bonapp.data.mapper.toRecipe
 import com.team.bonapp.domain.AppState
 import com.team.bonapp.domain.ErrorState
@@ -12,8 +13,8 @@ import javax.inject.Inject
 class GetMainContent @Inject constructor(private val edamamRepository: EdamamRepository) {
 
     operator fun invoke(
-        app_id: String,
-        app_key: String,
+        app_id: String = BuildConfig.app_id,
+        app_key: String = BuildConfig.app_key,
         query: String,
         dishType: String
     ) = flow {
