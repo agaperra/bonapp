@@ -45,8 +45,12 @@ android {
         properties.load(project.rootProject.file("app.properties").newDataInputStream())
         def app_id = properties.getProperty("application_ID", "")
         it.buildConfigField "String", "app_id", app_id
+//        def app_id_food = properties.getProperty("application_ID_food", "")
+//        it.buildConfigField "String", "app_id_food", app_id_food
         def app_key = properties.getProperty("application_keys", "")
         it.buildConfigField "String", "app_key", app_key
+//        def app_key_food = properties.getProperty("application_keys_food", "")
+//        it.buildConfigField "String", "app_key_food", app_key_food
     }
 }
 
@@ -55,12 +59,13 @@ dependencies {
     def splashScreenVersion = "1.0.0"
     implementation("androidx.core:core-splashscreen:$splashScreenVersion")
 
+    // Core
     implementation 'androidx.core:core-ktx:1.7.0'
+
+    // Design
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
     // Testing
     testImplementation 'junit:junit:4.13.2'
@@ -69,6 +74,7 @@ dependencies {
 
     // Architectural Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
 
     // Room
     implementation "androidx.room:room-runtime:2.4.3"
@@ -81,6 +87,9 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
+    // Timber Logging
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
     // Coroutine Lifecycle Scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
@@ -89,6 +98,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
 
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.2"

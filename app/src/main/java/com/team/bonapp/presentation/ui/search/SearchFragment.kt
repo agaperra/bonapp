@@ -12,7 +12,7 @@ import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.team.bonapp.R
 import com.team.bonapp.databinding.FragmentSearchBinding
-import com.team.bonapp.db.FilterValues
+import com.team.bonapp.data.db.FilterValues
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

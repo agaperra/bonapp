@@ -1,4 +1,4 @@
-package com.team.bonapp.db
+package com.team.bonapp.data.db
 
 val FilterValues: LinkedHashMap<String, List<String>> = linkedMapOf(
     "Diet" to listOf(
@@ -52,5 +52,15 @@ val FilterValues: LinkedHashMap<String, List<String>> = linkedMapOf(
         "Soup",
         "Starter",
         "Sweets"
+    ),
+    "Dish type category" to listOf(
+        "Bread",
+        "Soup",
+        "Desserts",
+        "Drinks",
+        "Salad",
     )
+//    "Category" to listOf(
+//        "generic-foods", "generic-meals", "packaged-foods", "fast-foods"
+//    )
 )
