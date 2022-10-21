@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(
     private val _mainContentLoading = MutableStateFlow(true)
     var mainContentLoading = _mainContentLoading.asStateFlow()
 
-    private val categories = MealValues()["Dish type category"]!!
+    private val categories = MealValues["Dish type category"]!!
     var currentFragmentId = 0
     lateinit var dishType: String
 

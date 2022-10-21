@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(childFragmentManager)
 
-        MealValues()["Dish type category"]?.forEach { category ->
+        MealValues["Dish type category"]?.forEach { category ->
             adapter.addFragment(PagerFragment(category), category)
             viewPager.adapter = adapter
         }

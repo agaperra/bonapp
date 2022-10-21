@@ -15,11 +15,49 @@
         android:id="@+id/navigation_search"
         android:name="com.team.bonapp.presentation.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_navigation_search_result"
+            app:destination="@id/navigation_search_result" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"
         android:name="com.team.bonapp.presentation.ui.favorite.FavoriteFragment"
         android:label="@string/title_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/navigation_search_result"
+        android:name="com.team.bonapp.presentation.ui.search.SearchResultFragment"
+        android:label="SearchResultFragment" >
+        <argument
+            android:name="q"
+            app:argType="string" />
+        <argument
+            android:name="diet"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="health"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="cuisineType"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="mealType"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="dishType"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
 </navigation>
