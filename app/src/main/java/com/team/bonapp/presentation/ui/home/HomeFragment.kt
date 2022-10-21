@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.team.bonapp.databinding.FragmentHomeBinding
 import com.team.bonapp.data.db.MealValues
-import com.team.bonapp.domain.AppState
 import com.team.bonapp.presentation.adapters.pager.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -46,7 +44,6 @@ class HomeFragment : Fragment() {
         val adapter = ViewPagerAdapter(childFragmentManager)
 
         MealValues()["Dish type category"]?.forEach { category ->
-            val page = PagerFragment(category)
             adapter.addFragment(PagerFragment(category), category)
             viewPager.adapter = adapter
         }
@@ -63,7 +60,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-
     }
 
     override fun onDestroyView() {

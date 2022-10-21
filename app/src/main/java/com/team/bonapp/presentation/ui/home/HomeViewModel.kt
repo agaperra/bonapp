@@ -49,7 +49,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getContent() {
-        setContentLoading()
         dishType = categories[currentFragmentId]
         getMainContent(query = dishType.lowercase(), dishType = dishType).onEach { result ->
             when (result) {

@@ -65,27 +65,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:paddingVertical="16dp"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal" >
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
 
     </ScrollView>
-<!--    <com.google.android.material.chip.ChipGroup-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cv_search" >-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            style="@style/Colors_Widget.MaterialComponents.Chip.Choice"-->
-<!--            android:text="Test chip 1"/>-->
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:translationZ="5dp"-->
-<!--            style="@style/Colors_Widget.MaterialComponents.Chip.Choice"-->
-<!--            android:text="Test chip long text 2"/>-->
-
-<!--    </com.google.android.material.chip.ChipGroup>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
