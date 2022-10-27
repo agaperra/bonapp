@@ -1,9 +1,7 @@
 package com.team.bonapp.presentation.adapters
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
-import android.util.Base64.decode
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -14,7 +12,6 @@ import com.team.bonapp.domain.model.basic.Recipe
 import com.team.bonapp.presentation.adapters.diffutil.RecipeDiffUtil
 import com.team.bonapp.utils.setImage
 import jp.wasabeef.blurry.Blurry
-import java.net.URLDecoder.decode
 import java.util.*
 
 
@@ -30,6 +27,8 @@ class MainContentListAdapter() :
 
             binding.circleImageView.setImage(recipe.image)
 
+            // TODO сделать неормально отображение фона без задержек
+
 //            val bitmap = Blurry.with(getContext())
 //                .radius(10)
 //                .sampling(8)
@@ -41,7 +40,12 @@ class MainContentListAdapter() :
                 .sampling(2)
                 .capture(binding.circleImageView)
                 .getAsync {
-                    binding.backgroundBlur.setImageDrawable(BitmapDrawable(getContext()?.resources, it))
+                    binding.backgroundBlur.setImageDrawable(
+                        BitmapDrawable(
+                            getContext()?.resources,
+                            it
+                        )
+                    )
                 }
             itemView.invalidate()
 
