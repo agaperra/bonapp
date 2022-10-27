@@ -64,8 +64,12 @@ dependencies {
 
     // Design
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Для фона: не работает??
+    implementation 'com.revosleap.layout:blurrylayout:2.0.0'
+
     //Circle imageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 

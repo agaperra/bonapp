@@ -2,7 +2,6 @@ package com.team.bonapp.presentation.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.team.bonapp.data.api.ApiInterceptor
 import com.team.bonapp.data.api.EdamamApi
 import com.team.bonapp.utils.Constants.API
 import com.team.bonapp.utils.network.NetworkStatusListener

@@ -21,6 +21,9 @@ class MainContentListAdapter() :
             val recipe = getItem(itemPosition)
 
             binding.circleImageView.setImage(recipe.image)
+            binding.kal.text = recipe.calories.toInt().toString()
+            binding.time.text = if (recipe.totalTime == 0) 1.toString() else recipe.totalTime.toString()
+            binding.weight.text = recipe.totalWeight.toInt().toString()
 
         }
     }
