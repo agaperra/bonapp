@@ -1,4 +1,46 @@
 package com.team.bonapp.domain.use_case
 
-class GetFilteredContent {
+import com.team.bonapp.BuildConfig
+import com.team.bonapp.domain.AppState
+import com.team.bonapp.domain.ErrorState
+import com.team.bonapp.domain.repository.EdamamRepository
+import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
+import timber.log.Timber
+import javax.inject.Inject
+
+class GetFilteredContent @Inject constructor(private val edamamRepository: EdamamRepository) {
+    operator fun invoke(
+        app_id: String = BuildConfig.app_id,
+        app_key: String = BuildConfig.app_key,
+        query: String,
+        diet: Array<String>? = null,
+        dishType: Array<String>? = null,
+        health: Array<String>? = null,
+        cuisineType: Array<String>? = null,
+        mealType: Array<String>? = null
+    ) = flow {
+        emit(AppState.Loading())
+        try {
+            val response =
+                edamamRepository.filteredContent(
+                    app_id = app_id,
+                    app_key = app_key,
+                    query = query,
+                    diet = diet,
+                    dishType = dishType,
+                    health = health,
+                    cuisineType = cuisineType,
+                    mealType = mealType
+                )
+            emit(AppState.Success(data = response))
+        } catch (exception: HttpException) {
+            if (exception.code() != 400)
+                emit(AppState.Error(error = ErrorState.NO_INTERNET_CONNECTION))
+            Timber.e(exception)
+        } catch (exception: Exception) {
+            emit(AppState.Error(error = ErrorState.NO_INTERNET_CONNECTION))
+            Timber.e(exception)
+        }
+    }
 }

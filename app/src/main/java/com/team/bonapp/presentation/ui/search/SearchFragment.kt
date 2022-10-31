@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Space
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -101,11 +100,10 @@ class SearchFragment : Fragment() {
             chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
                 val propName = title.text.toString().filterNot { it == ' ' }.replaceFirstChar { it.lowercase() }
                 val checkedChipsSet = mutableSetOf<String>()
-                Toast.makeText(context, "Checked property is $propName", Toast.LENGTH_SHORT).show()
 
                 group.forEach { checkedChip ->
                     if (checkedChip.id in checkedIds) {
-                        checkedChipsSet.add((checkedChip as Chip).text.toString())
+                        checkedChipsSet.add((checkedChip as Chip).text.toString().lowercase())
                     }
                 }
 
@@ -117,12 +115,7 @@ class SearchFragment : Fragment() {
 
     private fun onButtonClickListener() = View.OnClickListener {
 
-        Toast.makeText(context, "Button is clicked!", Toast.LENGTH_SHORT).show()
-        if (binding.etSearch.text.isNotEmpty()) {
-            recipeBundle.putString("q", binding.etSearch.text.toString())
-        } else {
-            recipeBundle.putString("q", "recipe")
-        }
+        recipeBundle.putString("q", binding.etSearch.text.toString())
 
         findNavController().navigate(
             R.id.action_navigation_search_to_navigation_search_result,

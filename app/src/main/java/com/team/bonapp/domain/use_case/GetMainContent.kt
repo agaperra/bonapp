@@ -16,7 +16,7 @@ class GetMainContent @Inject constructor(private val edamamRepository: EdamamRep
         app_id: String = BuildConfig.app_id,
         app_key: String = BuildConfig.app_key,
         query: String,
-        dishType: String
+        dishType: String,
     ) = flow {
         emit(AppState.Loading())
         try {
@@ -37,5 +37,4 @@ class GetMainContent @Inject constructor(private val edamamRepository: EdamamRep
             Timber.e(exception)
         }
     }
-
 }
