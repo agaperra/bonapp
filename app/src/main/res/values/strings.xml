@@ -13,4 +13,5 @@
     <string name="cautions">Cautions:</string>
     <string name="ingredientLines">Ingredients:</string>
     <string name="empty_list">Unfortunately, you haven\'t added anything to your favorites yet. Rather, go to the "Home" tab and collect your favorite recipes.</string>
+    <string name="find_recipes">Find recipes!</string>
 </resources>

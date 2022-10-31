@@ -1,14 +1,11 @@
 package com.team.bonapp.presentation.ui.search
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.*
+import android.widget.Space
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.view.forEach
-import androidx.core.view.get
-import androidx.core.view.size
+import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
@@ -26,8 +23,6 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var recipeBundle = Bundle()
-
-//    private val recipeParameters = RecipeParameters()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,19 +47,23 @@ class SearchFragment : Fragment() {
 
     private fun createChips() {
         FilterValues.forEach { (key, value) ->
+
+            val spacingInPx = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
+
             val title = TextView(context)
             title.apply {
                 text = key
-                textSize = 20f
-                setTypeface(typeface, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(context, R.color.pale_olive))
-                setPadding(8, 8, 0, 0)
+                setTextAppearance(R.style.TitleText)
             }
 
             binding.llFilter.addView(title)
+            binding.llFilter.addView(
+                Space(context).apply {
+                    minimumHeight = spacingInPx
+                }
+            )
 
-            val chipGroup =
-                ChipGroup(context)
+            val chipGroup = ChipGroup(context)
             chipGroup.isSingleSelection = false
             chipGroup.isEnabled = true
 
@@ -79,22 +78,24 @@ class SearchFragment : Fragment() {
 
                 chip.apply {
                     text = category
-                    elevation = 2f
                     isCheckable = true
                     isClickable = true
                     textSize = 16f
                     setChipDrawable(chipDrawable)
-                    setEnsureMinTouchTargetSize(false)
+                    setEnsureMinTouchTargetSize(true)
                 }
                 chipGroup.addView(chip)
             }
 
-            chipGroup.chipSpacingVertical = 56
-            chipGroup.chipSpacingHorizontal = 56
-
             binding.llFilter.addView(chipGroup)
 
-            chipGroup.layoutParams.width = ChipGroup.LayoutParams.WRAP_CONTENT
+            binding.llFilter.addView(
+                Space(context).apply {
+                    minimumHeight = spacingInPx
+                }
+            )
+
+            chipGroup.layoutParams.width = ChipGroup.LayoutParams.MATCH_PARENT
             chipGroup.layoutParams.height = ChipGroup.LayoutParams.WRAP_CONTENT
 
             chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
@@ -109,7 +110,6 @@ class SearchFragment : Fragment() {
                 }
 
                 recipeBundle.putStringArray(propName, checkedChipsSet.toTypedArray())
-//                Toast.makeText(context, "Checked chips in group are $checkedChipsSet", Toast.LENGTH_SHORT).show()
             }
         }
     }
