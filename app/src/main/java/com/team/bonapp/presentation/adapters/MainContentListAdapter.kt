@@ -27,28 +27,6 @@ class MainContentListAdapter() :
 
             binding.circleImageView.setImage(recipe.image)
 
-            // TODO сделать неормально отображение фона без задержек
-
-//            val bitmap = Blurry.with(getContext())
-//                .radius(10)
-//                .sampling(8)
-//                .capture(binding.circleImageView).get()
-//            binding.backgroundBlur.setImageDrawable(BitmapDrawable(getContext()?.resources, bitmap))
-
-            Blurry.with(getContext())
-                .radius(25)
-                .sampling(2)
-                .capture(binding.circleImageView)
-                .getAsync {
-                    binding.backgroundBlur.setImageDrawable(
-                        BitmapDrawable(
-                            getContext()?.resources,
-                            it
-                        )
-                    )
-                }
-            itemView.invalidate()
-
             binding.name.text = recipe.label.uppercase(Locale.ROOT)
             binding.kal.text = recipe.calories.toInt().toString()
             binding.time.text =
